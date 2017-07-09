@@ -9,10 +9,12 @@ import (
 	_ "github.com/nakagami/firebirdsql"
 
 	"zte/ims/lbs/bll/SecurityCtrl"
+	"zte/ims/lbs/log"
 )
 
 func main() {
 	fmt.Println("lbs start running ... ")
+	log.WriteRunLog("aaa")
 
 	go SecurityCtrl.Start()
 
