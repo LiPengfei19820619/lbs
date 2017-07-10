@@ -40,7 +40,7 @@ func init() {
 }
 
 // WriteDBLog 记录运行日志
-func WriteDBLog(v ...interface{}) {
-	fmt.Println(v...)
-	dbLogger.Println(v...)
+func WriteDBLog(log string) {
+	fmt.Println(log)
+	dbLogger.Println(log)
 }
