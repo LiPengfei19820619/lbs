@@ -37,14 +37,14 @@ func (writer *DBLogWriter) Close() {
 	close(writer.logs)
 }
 
-func NewDBLogWriter(dbfile string) *SocketLogWriter {
+func NewDBLogWriter(dbfile string) *DBLogWriter {
 	db, err := sql.Open("sqlite3", dbfile)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "NewDBLogWriter(%q): %s\n", dbfile, err)
 		return nil
 	}
 
-	w := SocketLogWriter{make(chan []byte, LogBufferLength)}
+	w := DBLogWriter{make(chan []byte, LogBufferLength)}
 
 	go func() {
 		defer func() {
@@ -67,6 +67,8 @@ func NewDBLogWriter(dbfile string) *SocketLogWriter {
 
 func writeHTTPLogToDB(db *sql.DB, log []byte) error {
 	var httpLogRecord HTTPLogRecord
+
+	fmt.Println(string(log))
 
 	err := json.Unmarshal(log, &httpLogRecord)
 	if err != nil {

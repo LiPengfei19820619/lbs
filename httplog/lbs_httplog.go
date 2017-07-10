@@ -6,7 +6,7 @@ import (
 	"net"
 	"os"
 
-	"zte/ims/lbs/log"
+	"zte/ims/lbs/httplog/log"
 )
 
 var (
@@ -42,9 +42,11 @@ func main() {
 		// log to standard output
 		fmt.Println(string(buffer))
 		js := string(buffer[:len])
-		logger := log.NewDBLogger("D:\\lbs_http_log.sl3")
+
+		//logger := log.NewDBLogger("D:\\lbs_http_log.sl3")
 
 		fmt.Println(js)
-		logger.Println(js)
+		//logger.Println(js)
+		log.WriteDBLog(js)
 	}
 }

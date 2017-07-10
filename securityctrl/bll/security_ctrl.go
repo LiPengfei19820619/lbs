@@ -1,4 +1,4 @@
-package SecurityCtrl
+package bll
 
 import (
 	"bytes"
@@ -6,14 +6,14 @@ import (
 	"io"
 	"net"
 	"net/http"
-	"zte/ims/lbs/bll"
-	"zte/ims/lbs/model"
+
+	"zte/ims/lbs/securityctrl/model"
 )
 
 // Start 启动安全管控SOAP消息转发服务
 func Start() {
-	selfIPAddr := bll.GetSelfIPAddr()
-	selfPort := bll.GetSelfListenPort()
+	selfIPAddr := GetSelfIPAddr()
+	selfPort := GetSelfListenPort()
 
 	startHTTPServer(selfIPAddr, selfPort)
 }
@@ -34,7 +34,7 @@ type Session struct {
 }
 
 func httpHandler(w http.ResponseWriter, req *http.Request) {
-	nodes := bll.GetAllAdjacentNodes()
+	nodes := GetAllAdjacentNodes()
 	if len(nodes) == 0 {
 		io.WriteString(w, "No node to transfer!")
 		return

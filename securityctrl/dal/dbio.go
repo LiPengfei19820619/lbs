@@ -3,7 +3,7 @@ package dal
 import (
 	"database/sql"
 	"fmt"
-	"zte/ims/lbs/model"
+	"zte/ims/lbs/securityctrl/model"
 )
 
 var (

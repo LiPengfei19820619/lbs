@@ -9,8 +9,8 @@ import (
 	_ "github.com/nakagami/firebirdsql"
 
 	"time"
-	"zte/ims/lbs/bll/SecurityCtrl"
-	"zte/ims/lbs/log"
+	"zte/ims/lbs/securityctrl/bll"
+	"zte/ims/lbs/securityctrl/log"
 )
 
 func main() {
@@ -27,7 +27,7 @@ func main() {
 
 	log.WriteHTTPLog(&httpLog)
 
-	go SecurityCtrl.Start()
+	go bll.Start()
 
 	ch := make(chan os.Signal)
 	signal.Notify(ch, syscall.SIGINT, syscall.SIGTERM)

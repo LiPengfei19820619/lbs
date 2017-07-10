@@ -2,8 +2,8 @@ package bll
 
 import (
 	"fmt"
-	"zte/ims/lbs/dal"
-	"zte/ims/lbs/model"
+	"zte/ims/lbs/securityctrl/dal"
+	"zte/ims/lbs/securityctrl/model"
 )
 
 var (
