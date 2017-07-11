@@ -11,6 +11,7 @@ import (
 	"time"
 	"zte/ims/lbs/securityctrl/bll"
 	"zte/ims/lbs/securityctrl/log"
+	"zte/ims/lbs/securityctrl/webapi"
 )
 
 func main() {
@@ -28,6 +29,7 @@ func main() {
 	log.WriteHTTPLog(&httpLog)
 
 	go bll.Start()
+	go webapi.Start()
 
 	ch := make(chan os.Signal)
 	signal.Notify(ch, syscall.SIGINT, syscall.SIGTERM)

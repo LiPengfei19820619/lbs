@@ -19,7 +19,9 @@ func Start() {
 }
 
 func startHTTPServer(ipaddr string, port int) error {
-	http.HandleFunc("/", httpHandler)
+	mux := http.NewServeMux()
+	mux.HandleFunc("/", httpHandler)
+
 	laddr := fmt.Sprint(ipaddr, ":", port)
 	http.ListenAndServe(laddr, nil)
 
